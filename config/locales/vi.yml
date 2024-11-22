@@ -1,0 +1,8 @@
+vi:
+  errors:
+    messages:
+      avatar_too_large: "Ảnh đại diện phải nhỏ hơn 5MB"
+      invalid_avatar_format: "Ảnh đại diện phải là .jpg, .jpeg, .png, hoặc .gif"
+      end_date_after_start_date: "Ngày kết thúc phải sau ngày bắt đầu"
+      already_followed: "Bạn đã theo dõi người dùng này rồi"
+      invalid_url: "URL không hợp lệ"
