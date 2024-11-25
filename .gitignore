@@ -63,3 +63,7 @@ build-iPhoneSimulator/
 /storage
 /node_modules
 package-lock.json
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
