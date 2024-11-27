@@ -1,0 +1,25 @@
+@import "bootstrap";
+.footer {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 8rem;
+}
+
+.footer-section h5 {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+.footer-section ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+}
+.footer-section ul li a:hover {
+  color: #ecf0f1;
+}

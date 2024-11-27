@@ -6,3 +6,26 @@ vi:
       end_date_after_start_date: "Ngày kết thúc phải sau ngày bắt đầu"
       already_followed: "Bạn đã theo dõi người dùng này rồi"
       invalid_url: "URL không hợp lệ"
+  home:
+    title: "DeCaPa | Tạo cơ hội nghề nghiệp IT, hình thành tương lai của bạn."
+    hero:
+      title: "Khám phá cơ hội nghề nghiệp mới."
+      subtitle: "Chúng tôi cam kết về văn hóa công ty xuất sắc và phúc lợi tuyệt vời"
+      search_placeholder: "Tìm kiếm vị trí công việc, công ty, hoặc địa điểm"
+      select_city: "Tất cả thành phố"
+      search_button: "Tìm kiếm"
+    jobs:
+      title: "Các công việc nổi bật gần đây"
+      view_all: "Xem tất cả công việc"
+      apply_now: "Nộp đơn ngay"
+    companies:
+      title: "Tìm công ty mơ ước của bạn"
+      view_all: "Xem tất cả công ty"
+    locations:
+      title: "Theo địa điểm"
+      view_all: "Xem tất cả các thành phố"
+  header:
+    jobs: "Công việc"
+    companies: "Công ty"
+    for_employers: "Dành cho Nhà tuyển dụng"
+    login: "Đăng nhập"

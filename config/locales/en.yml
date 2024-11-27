@@ -6,3 +6,26 @@ en:
       end_date_after_start_date: "End date must be after start date"
       already_followed: "You are already following this user"
       invalid_url: "Invalid URL"
+  home:
+    title: "DeCaPa | Empowering IT Careers, Shaping Your Future."
+    hero:
+      title: "Explore open career opportunities."
+      subtitle: "We commit to exceptional company culture and outstanding benefits"
+      search_placeholder: "Search for job title, company, or location"
+      select_city: "All cities"
+      search_button: "Search"
+    jobs:
+      title: "Last Featured Jobs"
+      view_all: "View all jobs"
+      apply_now: "Apply now"
+    companies:
+      title: "Find your dream company"
+      view_all: "View all companies"
+    locations:
+      title: "By Location"
+      view_all: "View all cities"
+  header:
+    jobs: "Jobs"
+    companies: "Companies"
+    for_employers: "For Employers"
+    login: "Login"

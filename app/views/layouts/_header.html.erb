@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="left-menu">
+    <div class="header-logo">
+      <%= image_tag "logo.jpg", alt: "Transparent BPO" %> 
+    </div>
+    <nav class="dropdown-nav">
+      <a href="#"><%= t "header.jobs" %></a>
+      <a href="#"><%= t "header.companies" %></a>
+    </nav>
+  </div>
+
+  <nav class="header-nav">
+    <a href="#"><%= t "header.for_employers" %></a>
+    <%= link_to "Login", t("header.login"), class: "btn-login" %> 
+    <div class="switch-language">
+      <%= link_to "EN", switch_language_path(locale: 'en') %>
+      <div class="separator">|</div>
+      <%= link_to "VI", switch_language_path(locale: 'vi') %>
+    </div>
+  </nav>
+</header>
