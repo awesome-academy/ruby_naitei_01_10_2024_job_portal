@@ -1,21 +1,21 @@
 <header class="header">
   <div class="left-menu">
     <div class="header-logo">
-      <%= image_tag "logo.jpg", alt: "Transparent BPO" %> 
+      <%= link_to image_tag("logo.jpg", alt: "Transparent BPO"), root_path %> 
     </div>
     <nav class="dropdown-nav">
-      <a href="#"><%= t "header.jobs" %></a>
+      <%= link_to t("header.jobs"), jobs_path %>
       <a href="#"><%= t "header.companies" %></a>
     </nav>
   </div>
 
   <nav class="header-nav">
     <a href="#"><%= t "header.for_employers" %></a>
-    <%= link_to "Login", t("header.login"), class: "btn-login" %> 
+    <%= link_to t("header.login"), "#", class: "btn-login" %> 
     <div class="switch-language">
-      <%= link_to "EN", switch_language_path(locale: 'en') %>
+      <%= link_to "EN", switch_language_path(locale: "en") %>
       <div class="separator">|</div>
-      <%= link_to "VI", switch_language_path(locale: 'vi') %>
+      <%= link_to "VI", switch_language_path(locale: "vi") %>
     </div>
   </nav>
 </header>

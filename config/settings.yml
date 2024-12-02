@@ -12,3 +12,6 @@ company:
 image:
   max_size: 5
   acceptable_types: [".jpg", ".jpeg", ".png", ".gif"]    
+jobs:
+  page_size: 4
+  description_max_length: 100

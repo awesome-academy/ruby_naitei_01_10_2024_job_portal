@@ -29,3 +29,16 @@ en:
     companies: "Companies"
     for_employers: "For Employers"
     login: "Login"
+  jobs:
+    view_details: "View details"
+    apply_now: "Apply now"
+    apply: "Apply"
+    filters: "Filters"
+    job_type: "Jobs Type"
+    show_result: "Showing %{count} result"
+    reset: "Reset"
+    filter:
+      remote: "Remote"
+      office: "Office"
+      hybrid: "Hybrid"
+      overseas: "Overseas"
