@@ -2,9 +2,9 @@
 <div class="hero-section">
   <h1><%= t "home.hero.title" %></h1>
   <p><%= t "home.hero.subtitle" %></p>
-  <%= form_with url: '/jobs', method: :get, local: true do |f| %>
-    <%= f.text_field :position, class: "input-search", placeholder: t("home.hero.search_placeholder") %>
-    <%= f.select :location, [['Ha Noi', 'hanoi'], ['Da Nang', 'danang'], ['Ho Chi Minh City', 'hochiminh'], ['Others', 'other']], { prompt: t("home.hero.select_city") }, class: "custom-search-select" %>
+  <%= form_with url: jobs_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, class: "input-search", placeholder: t("home.hero.search_placeholder") %>
+    <%= f.select :location, locations.map { |loc| [t(loc[:key]), loc[:value]] }, { prompt: t("home.hero.select_city") }, class: "custom-search-select" %>
     <%= f.submit t("home.hero.search_button"), class: "btn-search" %>
   <% end %>
 </div>

@@ -7,4 +7,13 @@ module JobsHelper
       {key: "jobs.filter.overseas", value: "3"}
     ]
   end
+
+  def locations
+    [
+      {key: "jobs.filter.hanoi", value: "Hà Nội"},
+      {key: "jobs.filter.danang", value: "Đà Nẵng"},
+      {key: "jobs.filter.hcm", value: "Hồ Chí Minh"},
+      {key: "jobs.filter.others", value: "others"}
+    ]
+  end
 end

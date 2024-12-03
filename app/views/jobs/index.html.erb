@@ -6,20 +6,34 @@
         <%= link_to t("jobs.reset"), jobs_path, class: "btn btn-outline-danger" %>
       </div>
       <div class="mb-3">
-        <p class="h5 fw-bold"><%= t "jobs.job_type" %></p>
         <%= form_with url: jobs_path, method: :get, local: true do |f| %>
+          <p class="h5 fw-bold"><%= t "jobs.job_type" %></p>
           <% work_types.each do |type| %>
             <div class="d-flex justify-content-between align-items-center mt-2">
               <p class="mb-0 h5"><%= t type[:key] %></p>
               <%= check_box_tag "work_type[]", type[:value], params[:work_type]&.include?(type[:value]) %>
             </div>
-          <% end %>        
+          <% end %>   
+          
+          <p class="h5 fw-bold mt-3"><%= t "jobs.location" %></p>
+          <% locations.each do |location| %>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <p class="mb-0 h5"><%=t location[:key] %></p>
+              <%= check_box_tag "location[]", location[:value], params[:location]&.include?(location[:value]) %>
+            </div>
+          <% end %>
+          <% if params[:keyword].present? %>
+            <%= f.hidden_field :keyword, value: params[:keyword] %>
+          <% end %>
           <%= f.submit t("jobs.apply"), class: "btn btn-primary mt-3 float-end" %>
         <% end %>               
       </div>
     </div>
 
     <div class="col-md-9">
+      <% if params[:keyword].present? %>
+        <h5 class="fw-bold"><%= t "jobs.result_for_keyword" %> "<%= params[:keyword] %>"</h5>
+      <% end %>
       <h5><%= t "jobs.show_result", count: @pagy.count %></h5>
       
       <div class="row row-cols-1 row-cols-md-2 g-4">

@@ -42,3 +42,8 @@ en:
       office: "Office"
       hybrid: "Hybrid"
       overseas: "Overseas"
+      hanoi: "Hanoi"
+      hcm: "Ho Chi Minh"
+      danang: "Da Nang"
+      others: "Others"
+    result_for_keyword: "Search results for keyword"

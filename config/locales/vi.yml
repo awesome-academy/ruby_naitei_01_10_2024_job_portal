@@ -42,6 +42,11 @@ vi:
       office: "Làm việc tại văn phòng"
       hybrid: "Làm việc kết hợp"
       overseas: "Làm việc ở nước ngoài"
+      hanoi: "Hà Nội"
+      hcm: "TP Hồ Chí Minh"
+      danang: "Đà Nẵng"
+      others: "Khác"
+    result_for_keyword: "Kết quả tìm kiếm cho từ khóa"
   datetime:
     distance_in_words:
       less_than_x_seconds:
