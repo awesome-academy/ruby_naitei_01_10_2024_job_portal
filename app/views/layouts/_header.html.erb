@@ -1,7 +1,7 @@
 <header class="header">
   <div class="left-menu">
     <div class="header-logo">
-      <%= link_to image_tag("logo.jpg", alt: "Transparent BPO"), root_path %> 
+      <%= link_to image_tag("logo.jpg"), root_path %> 
     </div>
     <nav class="dropdown-nav">
       <%= link_to t("header.jobs"), jobs_path %>
@@ -11,7 +11,22 @@
 
   <nav class="header-nav">
     <a href="#"><%= t "header.for_employers" %></a>
-    <%= link_to t("header.login"), "#", class: "btn-login" %> 
+    <% if logged_in? %>
+      <div class="dropdown header-username" id="header-dropdown">
+        <div class="dropdown-toggle" data-toggle="dropdown">
+          <%= current_user.full_name %>
+          <b class="caret"></b>
+        </div>
+        <ul class="dropdown-menu" id="dropdown-menu">
+          <li class="dropdown-link"><%= link_to t("header.profile"), "#" %></li>
+          <li class="dropdown-link"><%= link_to t("header.settings"), "#" %></li>
+          <li class="divider"></li>
+          <li class="dropdown-link"><%= link_to t("header.logout"), logout_path, data: { turbo_method: :delete } %></li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to t("header.login"), login_path, class: "btn-login" %>
+    <% end %>
     <div class="switch-language">
       <%= link_to "EN", switch_language_path(locale: "en") %>
       <div class="separator">|</div>

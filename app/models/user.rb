@@ -16,11 +16,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true,
 format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :full_name, presence: true,
-length: {maximum: Settings.user.full_name.max_length}
-  validates :phone,
-            format: {with: Settings.user.phone.format,
-                     message: I18n.t("errors.messages.invalid_phone")},
-            allow_blank: true
+length: {maximum: Settings.user.fullname.max_length}
+  validates :phone, presence: true, allow_blank: true
   validates :role, presence: true
   validate :avatar_format
 

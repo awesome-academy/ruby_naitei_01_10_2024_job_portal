@@ -4,5 +4,8 @@ Rails.application.routes.draw do
     resources :jobs, only: [:index]
     get "home/index"
     root "home#index"
+    get "/login", to: "sessions#new"
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
   end
 end

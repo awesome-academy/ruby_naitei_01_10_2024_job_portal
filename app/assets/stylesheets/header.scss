@@ -19,6 +19,7 @@
 }
 
 .header-nav {
+  height: 80px;
   display: flex;
   align-items: center;
   
@@ -67,4 +68,40 @@
     color: $textDark;
     text-decoration: none;
   }
+}
+
+.dropdown-menu{
+  top: 100%;
+  width: 100%;  
+  padding: 0 !important;
+  
+  &.active {
+  display: block;
+  }
+}
+
+.dropdown-link {
+  width: 100%;
+  padding: 6px 16px;
+  font-size: 16px;
+  font-weight: 400;
+
+  &:hover {
+    background-color: $backgroundBlueLight;
+  }
+}
+
+.header-username {
+  font-weight: 500;
+  font-size: 18px;
+  height: inherit;
+  margin-right: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid $borderGray3;
 }

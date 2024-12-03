@@ -24,11 +24,24 @@ en:
     locations:
       title: "By Location"
       view_all: "View all cities"
+  login:
+    login: "Login"
+    title: "Login to your account"
+    subtitle: "Explore open career opportunities"
+    email: "Email"
+    password: "Password"
+    can't_sign_in: "Can't sign in?"
+    register: "Register"
+    or: "OR"
+    continue_with: "Continue with %{provider}"
   header:
     jobs: "Jobs"
     companies: "Companies"
     for_employers: "For Employers"
     login: "Login"
+    profile: "Profile"
+    logout: "Logout"
+    settings: "Settings"
   jobs:
     view_details: "View details"
     apply_now: "Apply now"
@@ -42,3 +55,7 @@ en:
       office: "Office"
       hybrid: "Hybrid"
       overseas: "Overseas"
+  flash:
+    login:
+      success: "Logged in successfully"
+      error: "Invalid email or password"

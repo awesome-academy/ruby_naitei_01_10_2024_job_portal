@@ -21,9 +21,25 @@
       },
       experience_level: %w[Junior Mid-level Senior].sample,
       salary_range: "$#{Faker::Number.between(from: 50_000, to: 150_000)} / year",
-      location: Faker::Address.city,
-      work_type: Job.work_types.keys.sample, 
-      status: Job.statuses.keys.sample     
+      location: ["Hà Nội", "Hồ Chí Minh", "Đà Nẵng", "Thanh Hóa", "Hải Phòng"].sample,
+      work_type: Job.work_types.keys.sample,
+      status: Job.statuses.keys.sample
     )
   end
+end
+
+100.times do |n|
+  full_name = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  dob = Faker::Date.birthday(min_age: 18, max_age: 65)
+  phone = Faker::PhoneNumber.cell_phone
+  User.create!(full_name: full_name,
+              email: email,
+              password: password,
+              password_confirmation: password,
+              dob: dob,
+              phone: phone,
+              is_active: true,
+              role: 0)
 end

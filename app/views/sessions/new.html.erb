@@ -1,0 +1,35 @@
+<% provide :title, t("login.login") %>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 25rem;">
+    <div class="text-center mb-4">
+      <h4 class="fw-bold"><%= t "login.title" %></h4>
+      <p class="text-muted"><%= t "login.subtitle" %></p>
+    </div>
+    <%= form_with url: login_path, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, t("login.email"), class: "form-label" %>
+        <%= f.email_field :email, class: "form-control", placeholder: t("login.email") %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :password, t("login.password"), class: "form-label" %>
+        <%= f.password_field :password, class: "form-control", placeholder: t("login.password") %>
+      </div>
+      <div class="d-grid">
+        <%= f.submit t("login.login"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <div class="text-center mt-3">
+      <p>OR</p>
+      <a href="#" class="btn btn-outline-primary w-100">
+        <i class="fab fab-facebook"></i> <%= t "login.continue_with", provider: "Facebook" %>
+      </a>
+    </div>
+    <div class="text-center mt-3">
+      <p class="small">
+        <a href="#"><%= t "login.can't_sign_in" %></a> | 
+        <a href="#"><%= t "login.register" %></a>
+      </p>
+    </div>
+  </div>
+</div>

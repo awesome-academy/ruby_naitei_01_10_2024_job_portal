@@ -29,6 +29,9 @@ vi:
     companies: "Công ty"
     for_employers: "Dành cho Nhà tuyển dụng"
     login: "Đăng nhập"
+    profile: "Hồ sơ"
+    logout: "Đăng xuất"
+    settings: "Cài đặt"
   jobs:
     view_details: "Xem chi tiết"
     apply_now: "Nộp đơn ngay"
@@ -42,6 +45,20 @@ vi:
       office: "Làm việc tại văn phòng"
       hybrid: "Làm việc kết hợp"
       overseas: "Làm việc ở nước ngoài"
+  login:
+    login: "Đăng nhập"
+    title: "Đăng nhập vào tài khoản của bạn"
+    subtitle: "Khám phá cơ hội nghề nghiệp mới"
+    email:  "Email"
+    password: "Mật khẩu"
+    can't_sign_in: "Không thể đăng nhập?"
+    register: "Đăng ký"
+    or: "HOẶC"
+    continue_with: "Tiếp tục với %{provider}"
+  flash:
+    login:
+      success: "Đăng nhập thành công"
+      error: "Email hoặc mật khẩu không chính xác"
   datetime:
     distance_in_words:
       less_than_x_seconds:

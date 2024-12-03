@@ -1,8 +1,6 @@
 user:
   fullname:
     max_length: 50
-  phone:
-    format: /\A\+?[0-9]{10,14}\z/
 user_project:
   title_max_length: 50
   description_max_length: 1000
