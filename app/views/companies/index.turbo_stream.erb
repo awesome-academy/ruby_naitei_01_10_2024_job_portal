@@ -1,0 +1,11 @@
+<%= turbo_stream.append "company-list" do %>
+  <%= render partial: "companies/company", collection: @companies, as: :company %>
+<% end %>
+
+<% if @companies.size == Settings.company.page_size %>
+  <%= turbo_stream.replace "load-more-btn" do %>
+    <%= link_to "Xem thêm", companies_path(page: @page + 1), method: :get, remote: true, data: {turbo_stream: true}, class: "btn btn-primary", id: "load-more-btn" %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "load-more-btn" %>
+<% end %>

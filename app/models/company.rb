@@ -18,6 +18,10 @@ length: {maximum: Settings.company.name_max_length}
             allow_blank: true
   validate :logo_format
 
+  scope :search, lambda {|search|
+                   where("name LIKE ?", "%#{search}%") if search.present?
+                 }
+
   private
 
   def logo_format

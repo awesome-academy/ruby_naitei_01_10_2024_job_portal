@@ -77,3 +77,10 @@ en:
       success: "Logged in successfully"
       error: "Invalid email or password"
   ago: "ago"
+  company:
+    view_details: "View details"
+    title: "Explore company culture"
+    subtitle: "We commit to exceptional company culture and outstanding benefits"
+    search_placeholder: "Search for company name"
+    search: "Search"
+    view_more: "View more"

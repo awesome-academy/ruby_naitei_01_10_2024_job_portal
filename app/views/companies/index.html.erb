@@ -1,0 +1,24 @@
+<div class="container py-4">
+  <h1 class="text-center mb-4"><%= t "company.title" %></h1>
+  <p class="text-center mb-4"><%= t "company.subtitle" %></p>
+
+  <div class="search-bar mb-4">
+    <%= form_with url: companies_path, method: :get, local: true, class: "d-flex justify-content-center" do |form| %>
+      <div class="text_field_wrap d-flex border border-secondary-subtle rounded-3 px-2 align-items-center">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <%= form.text_field :query, placeholder: t("company.search_placeholder"), class: "form-control w-100 me-2 border-0" %>
+      </div>
+      <%= form.submit t("company.search"), class: "btn btn-primary mx-2" %>
+    <% end %>
+  </div>
+
+  <div class="row" id="company-list">
+    <%= render @companies %>
+  </div>
+
+  <% if @companies.size == Settings.company.page_size %>
+    <div class="text-center mt-4">
+      <%= link_to t("company.view_more"), companies_path(page: @page + 1), method: :get, remote: true, data: {turbo_stream: true}, class: "btn btn-primary", id: "load-more-btn" %>
+    </div>
+  <% end %>
+</div>

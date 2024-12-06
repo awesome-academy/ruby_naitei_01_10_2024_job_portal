@@ -77,6 +77,13 @@ vi:
       success: "Đăng nhập thành công"
       error: "Email hoặc mật khẩu không chính xác"
   ago: "trước"
+  company:
+    view_details: "Xem chi tiết"
+    title: "Khám phá văn hóa công ty"
+    subtitle: "Chúng tôi cam kết về văn hóa công ty xuất sắc và phúc lợi tuyệt vời"
+    search_placeholder: "Tìm kiếm tên công ty"
+    search: "Tìm kiếm"
+    view_more: "Xem thêm"
   datetime:
     distance_in_words:
       less_than_x_seconds:

@@ -1,0 +1,15 @@
+<div class="col-md-4">
+  <div class="card company-card mb-4 mx-1">
+    <div class="card-body">
+      <h5 class="card-title"><%= company.name %></h5>
+      <p class="card-text"><%= truncate(company.description, length: Settings.company.truncate_description) %></p>
+      <% company.jobs.limit(2).each do |job| %>
+        <div class="d-flex flex-column px-2 py-2 border border-primary-subtle mb-2 rounded-3">
+          <span class="fw-bold"><%= job.title %></span>
+          <small class="text-muted"><%= job.location %> | <%= job.salary_range %></small>
+        </div>
+      <% end %>
+      <%= link_to t("company.view_details"), company_path(id: company.id), class: "btn btn-outline-primary w-100" %>
+    </div>
+  </div>
+</div>
