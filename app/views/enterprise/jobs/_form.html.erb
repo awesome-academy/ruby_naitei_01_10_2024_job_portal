@@ -32,7 +32,7 @@
 
     <div class="col-md-6">
       <%= f.label :status, t("enterprise.recruitment.status"), class: "form-label" %>
-      <%= f.select :status, statuses_options, { prompt: "Select status" }, class: "form-select" %>
+      <%= f.select :status, status_options, { prompt: "Select status" }, class: "form-select" %>
     </div>
 
     <div data-controller="job-skills" data-job-skills-target="container" class="mb-3">
