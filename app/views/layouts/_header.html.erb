@@ -14,7 +14,8 @@
       <%= link_to t("header.for_employers"), enterprise_login_path %>
     <% end %>
     <% if logged_in? %>
-      <div class="dropdown header-username" id="header-dropdown">
+      <%= render "shared/notification" %>
+      <div class="dropdown header-username ms-3" id="header-dropdown">
         <div class="dropdown-toggle" data-toggle="dropdown">
           <%= current_user.full_name %>
           <b class="caret"></b>

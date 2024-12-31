@@ -265,6 +265,20 @@ vi:
     login:
       admin_login: "Admin Login"
   status: "Status"
+  notifications:
+    new_application: "Ứng tuyển mới"
+    new_application_content: "%{user} đã ứng tuyển cho công việc %{job}."
+    application_status_updated: "Trạng thái ứng tuyển đã được cập nhật"
+    application_status_updated_content: "Ứng tuyển của bạn cho công việc %{job} đã được cập nhật thành %{status}."
+    interview_process_deleted: "Vòng phỏng vấn đã được xóa"
+    interview_process_deleted_content: "Vòng phỏng vấn của bạn cho công việc %{job} đã được xóa. Vui lòng kiểm tra ứng tuyển của bạn để biết thêm chi tiết."
+    interview_process_updated: "Vòng phỏng vấn đã được cập nhật"
+    interview_process_updated_content: "Vòng phỏng vấn của bạn cho công việc %{job} đã được cập nhật. Vui lòng kiểm tra ứng tuyển của bạn để biết thêm chi tiết."
+    interview_process_created: "Vòng phỏng vấn mới"
+    interview_process_created_content: "Bạn có một vòng phỏng vấn mới cho công việc %{job}. Vui lòng kiểm tra ứng tuyển của bạn để biết thêm chi tiết."
+    no_notification: "Không có thông báo"
+    mark_all_as_read: "Đánh dấu tất cả là đã đọc"
+    notifications: "Thông báo"
   datetime:
     distance_in_words:
       less_than_x_seconds:

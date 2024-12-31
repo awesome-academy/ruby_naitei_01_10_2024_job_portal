@@ -14,6 +14,15 @@ Rails.application.routes.draw do
       resources :user_social_links
     end
     resources :applications, only: %i(create show update)
+    resources :notifications, only: [] do
+      member do
+        patch :mark_as_read
+      end
+      collection do
+        patch :mark_all_as_read
+      end
+    end
+
     get "home/index"
     root "home#index"
     get "/login", to: "sessions#new"

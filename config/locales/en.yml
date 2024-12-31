@@ -265,3 +265,17 @@ en:
     login:
       admin_login: "Admin Login"
   status: "Status"
+  notifications:
+    new_application: "New Application"
+    new_application_content: "%{user} has applied for the job %{job}."
+    application_status_updated: "Application Status Updated"
+    application_status_updated_content: "Your application for %{job} has been updated to %{status}."
+    interview_process_deleted: "Interview Process Deleted"
+    interview_process_deleted_content: "Your interview process for %{job} has been deleted. Please check your application for more information."
+    interview_process_updated: "Interview Process Updated"
+    interview_process_updated_content: "Your interview process for %{job} has been updated. Please check your application for more information."
+    interview_process_created: "New Interview Process"
+    interview_process_created_content: "You have a new interview process for %{job}. Please check your application for more information."
+    no_notification: "No notifications"
+    mark_all_as_read: "Mark All As read"
+    notifications: "Notifications"

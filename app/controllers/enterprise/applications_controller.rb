@@ -1,5 +1,6 @@
 class Enterprise::ApplicationsController < ApplicationController
   layout "enterprise"
+  include NotificationsHelper
   before_action :load_application, only: [:show, :update_status]
 
   def index
@@ -13,8 +14,7 @@ class Enterprise::ApplicationsController < ApplicationController
 
   def update_status
     if @application.update(status: params[:status])
-      flash[:success] = t("flash.application.update_success")
-      redirect_to enterprise_application_path(@application)
+      handle_update_success(@application, params[:status])
     else
       flash[:danger] = t("flash.application.update_error")
       render :show
@@ -31,5 +31,16 @@ class Enterprise::ApplicationsController < ApplicationController
 
     flash[:danger] = t "enterprise.applications.not_found"
     redirect_to enterprise_applications_path
+  end
+
+  def handle_update_success application, status
+    create_notification_for_applicant(
+      application,
+      t("notifications.application_status_updated"),
+      t("notifications.application_status_updated_content",
+        job: application.job.title, status: status.capitalize)
+    )
+    flash[:success] = t("flash.application.update_success")
+    redirect_to enterprise_application_path(application)
   end
 end

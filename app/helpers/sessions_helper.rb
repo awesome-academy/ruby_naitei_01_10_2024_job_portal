@@ -15,6 +15,10 @@ module SessionsHelper
     end
   end
 
+  def unread_notifications
+    current_user.notifications.unread.count
+  end
+
   def logged_in?
     current_user.present?
   end

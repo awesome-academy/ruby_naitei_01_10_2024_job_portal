@@ -41,6 +41,7 @@ class ApplicationsController < ApplicationController
 
   def save_application
     if @application.save
+      create_notification_for_enterprise(@application)
       flash[:success] = t "flash.application.success"
       redirect_to job_path(id: @application.job.id)
     else
@@ -78,5 +79,18 @@ class ApplicationsController < ApplicationController
 
   def filtered_application_params
     application_params.except(:use_existing_cv)
+  end
+
+  def create_notification_for_enterprise application
+    enterprise_users = application.job.company.users
+    enterprise_users.each do |user|
+      Notification.create!(
+        user:,
+        title: t("notifications.new_application"),
+        content: t("notifications.new_application_content",
+                   user: current_user.full_name, job: application.job.title),
+        is_read: false
+      )
+    end
   end
 end
