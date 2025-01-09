@@ -2,8 +2,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_secure_password
 
+  belongs_to :company, optional: true
+
   has_one :user_profile, dependent: :destroy
-  accepts_nested_attributes_for :user_profile, reject_if: :all_blank
   has_many :applications, dependent: :destroy
   has_many :applied_jobs, through: :applications, source: :job
   has_many :company_reviews, dependent: :destroy
@@ -11,9 +12,11 @@ class User < ApplicationRecord
   has_many :followed_companies, through: :company_followers, source: :company
   has_many :notifications, dependent: :destroy
   has_many :user_social_links, dependent: :destroy
+
   accepts_nested_attributes_for :user_social_links, allow_destroy: true
+  accepts_nested_attributes_for :user_profile, reject_if: :all_blank
+
   delegate :user_projects, to: :user_profile
-  belongs_to :company, optional: true
 
   enum role: {user: 0, business: 1, admin: 2}
 
