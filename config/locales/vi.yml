@@ -6,6 +6,7 @@ vi:
       end_date_after_start_date: "Ngày kết thúc phải sau ngày bắt đầu"
       already_followed: "Bạn đã theo dõi người dùng này rồi"
       invalid_url: "URL không hợp lệ"
+      locales_not_supported: "Ngôn ngữ này không được hỗ trợ"
   home:
     title: "DeCaPa | Tạo cơ hội nghề nghiệp IT, hình thành tương lai của bạn."
     hero:

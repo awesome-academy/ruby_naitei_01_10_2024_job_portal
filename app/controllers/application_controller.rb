@@ -8,14 +8,14 @@ class ApplicationController < ActionController::Base
   def switch_language
     if params[:locale].present? &&
        I18n.available_locales.include?(params[:locale].to_sym)
-      session[:locale] = params[:locale]
+      cookies[:locale] = params[:locale]
     end
     redirect_to request.referer || root_path
   end
 
   private
   def set_locale
-    I18n.locale = session[:locale] || I18n.default_locale
+    I18n.locale = cookies[:locale] || I18n.default_locale
   end
 
   def logged_in_user
