@@ -18,6 +18,14 @@ class Job < ApplicationRecord
   enum work_type: {Remote: 0, Office: 1, Hybrid: 2, Oversea: 3}
   enum status: {draft: 0, pending: 1, active: 2, closed: 3}
 
+  validates :title, presence: true,
+length: {maximum: Settings.jobs.title_max_length}
+  validates :description, presence: true,
+length: {maximum: Settings.jobs.description_max_length}
+  validates :location, presence: true
+  validates :work_type, inclusion: {in: work_types.keys}
+  validates :status, inclusion: {in: statuses.keys}
+
   scope :filter_by_work_type, lambda {|work_types|
     where(work_type: work_types) if work_types.present?
   }

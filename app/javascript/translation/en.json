@@ -1,0 +1,4 @@
+{
+  "blank_error": "This field can't be blank",
+  "length_too_long_error": "This field is too long"
+}

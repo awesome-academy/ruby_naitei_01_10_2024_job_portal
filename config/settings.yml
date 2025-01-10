@@ -4,6 +4,10 @@ user:
 user_project:
   title_max_length: 50
   description_max_length: 1000
+user_profiles:
+  bio_max_length: 10000
+  current_address_max_length: 255
+  education_max_length: 1000
 company:
   name_max_length: 50
   description_max_length: 1000
@@ -14,7 +18,8 @@ image:
   acceptable_types: ["image/jpg", "image/jpeg", "image/png", "image/gif"]    
 jobs:
   page_size: 4
-  description_max_length: 100
+  description_max_length: 1000
+  title_max_length: 100
   filter_locations: ["Hà Nội", "Đà Nẵng", "Hồ Chí Minh"]
   related_jobs_size: 5
 interview:
@@ -27,3 +32,9 @@ roles:
   admin: 2
 apply:
   page_size: 9
+interview_process:
+  interviewer_name_max_length: 255
+  interview_location_max_length: 255
+  feedback_max_length: 1000
+  rating_min_value: 1
+  rating_max_value: 5

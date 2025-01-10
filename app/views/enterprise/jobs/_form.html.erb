@@ -1,4 +1,4 @@
-<%= form_with model: @job, url: form_url, local: true, method: method do |f| %>
+<%= form_with model: @job, url: form_url, local: true, html: { id: "enterprise_job_form" }, method: method do |f| %>
   <div class="row g-3">
     <div class="col-md-6">
       <%= f.label :title, t("enterprise.recruitment.job_name"), class: "form-label" %>

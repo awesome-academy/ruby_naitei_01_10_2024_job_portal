@@ -4,5 +4,21 @@ import "controllers"
 import "custom/menu"
 import "custom/step_modal"
 import "custom/datepicker"
+import "custom/job_validate"
+import "custom/translations"
 import "bootstrap"
 import "flatpickr"
+
+import { loadTranslations } from "./custom/translations";
+
+document.addEventListener("turbo:load", function() {
+  const locale = getCookie("locale");
+  loadTranslations(locale);
+});
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+}

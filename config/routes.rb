@@ -50,5 +50,7 @@ Rails.application.routes.draw do
       root "dashboard#index"
       resources :jobs, only: %i(update)
     end
+
+    get "/translations/:locale", to: "translations#show"
   end
 end
