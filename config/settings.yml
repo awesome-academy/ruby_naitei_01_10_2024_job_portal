@@ -22,6 +22,8 @@ jobs:
   title_max_length: 100
   filter_locations: ["Hà Nội", "Đà Nẵng", "Hồ Chí Minh"]
   related_jobs_size: 5
+  max_salary: 1000000
+  salary_filter_step: 100
 interview:
   datetime_format: "%B %d, %Y %H:%M"
 enterprise_scout:

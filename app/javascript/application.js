@@ -8,6 +8,7 @@ import "custom/job_validate"
 import "custom/translations"
 import "bootstrap"
 import "flatpickr"
+import "nouislider"
 
 import { loadTranslations } from "./custom/translations";
 

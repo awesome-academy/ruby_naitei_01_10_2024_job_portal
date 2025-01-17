@@ -1,12 +1,8 @@
 class JobsController < ApplicationController
   def index
-    jobs = Job
-           .filter_by_work_type(params[:work_type])
-           .search_by_keyword(params[:keyword])
-           .filter_by_location(params[:location])
-           .active
-
-    @pagy, @jobs = pagy(jobs, limit: Settings.jobs.page_size)
+    @q = Job.active.ransack(params[:q])
+    @pagy, @jobs = pagy(@q.result(distinct: true),
+                        limit: Settings.jobs.page_size)
   end
 
   def show

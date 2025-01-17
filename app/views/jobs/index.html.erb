@@ -1,46 +1,189 @@
 <div class="container my-4">
   <div class="row">
     <div class="col-md-3">
-      <div class="d-flex justify-content-between align-items-center">
-        <p class="h4 fw-bold" ><%= t "jobs.filters" %></p>
-        <%= link_to t("jobs.reset"), jobs_path, class: "btn btn-outline-danger" %>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse">
+          <i class="fa-solid fa-filter me-2"></i>
+          <%= t "jobs.filters" %>
+        </button>
       </div>
-      <div class="mb-3">
-        <%= form_with url: jobs_path, method: :get, local: true do |f| %>
-          <div class="search-bar my-4">
-            <div class="text_field_wrap d-flex border border-secondary-subtle rounded-3 px-2 align-items-center">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <%= f.text_field :keyword, placeholder: t("home.hero.search_placeholder"), value: params[:keyword], class: "form-control w-100 me-2 border-0 outline-none" %>
+
+      <div class="collapse show" id="filterCollapse">
+        <div class="card card-body">
+          <%= search_form_for @q, url: jobs_path do |f| %>
+            <div class="search-bar my-4">
+              <div class="text_field_wrap d-flex border border-secondary-subtle rounded-3 px-2 align-items-center">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <%= f.search_field :title_or_description_or_company_name_cont, 
+                    placeholder: t("home.hero.search_placeholder"), 
+                    class: "form-control w-100 me-2 border-0 outline-none" %>
+              </div>
             </div>
-          </div>
-          <p class="h5 fw-bold"><%= t "jobs.job_type" %></p>
-          <% work_types.each do |type| %>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <p class="mb-0 h5"><%= t type[:key] %></p>
-              <%= check_box_tag "work_type[]", type[:value], params[:work_type]&.include?(type[:value]) %>
+
+            <div class="accordion" id="filterAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button <%= "show" if params.dig(:q, :work_type_in).present? %>" 
+                          type="button" 
+                          data-bs-toggle="collapse" 
+                          data-bs-target="#workTypeCollapse">
+                    <%= t "jobs.job_type" %>
+                  </button>
+                </h2>
+                <div id="workTypeCollapse" 
+                     class="accordion-collapse collapse <%= "show" if params.dig(:q, :work_type_in).present? %>" 
+                     data-bs-parent="#filterAccordion">
+                  <div class="accordion-body">
+                    <% work_types.each do |type| %>
+                      <div class="form-check">
+                        <%= f.check_box :work_type_in, 
+                            { multiple: true, 
+                              checked: params.dig(:q, :work_type_in)&.include?(type[:value]), 
+                              class: "form-check-input" }, 
+                            type[:value], 
+                            nil %>
+                        <%= f.label "work_type_in_#{type[:value]}", t(type[:key]), class: "form-check-label" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button <%= "show" if params.dig(:q, :location_in).present? %>"
+                          type="button" 
+                          data-bs-toggle="collapse" 
+                          data-bs-target="#locationCollapse">
+                    <%= t "jobs.location" %>
+                  </button>
+                </h2>
+                <div id="locationCollapse" 
+                     class="accordion-collapse collapse <%= "show" if params.dig(:q, :location_in).present? %>"
+                     data-bs-parent="#filterAccordion">
+                  <div class="accordion-body">
+                    <% locations.each do |location| %>
+                      <div class="form-check">
+                        <%= f.check_box :location_in, 
+                            { multiple: true, 
+                              checked: params.dig(:q, :location_in)&.include?(location[:value]), 
+                              class: "form-check-input" }, 
+                            location[:value], 
+                            nil %>
+                        <%= f.label "location_in_#{location[:value]}", t(location[:key]), class: "form-check-label" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button <%= "show" if params.dig(:q, :experience_level_in).present? %>"
+                          type="button" 
+                          data-bs-toggle="collapse" 
+                          data-bs-target="#experienceCollapse">
+                    <%= t "jobs.experience" %>
+                  </button>
+                </h2>
+                <div id="experienceCollapse" 
+                     class="accordion-collapse collapse <%= "show" if params.dig(:q, :experience_level_in).present? %>"
+                     data-bs-parent="#filterAccordion">
+                  <div class="accordion-body">
+                    <% experience_levels.each do |level| %>
+                      <div class="form-check">
+                        <%= f.check_box :experience_level_in, 
+                            { multiple: true, 
+                              checked: params.dig(:q, :experience_level_in)&.include?(level[:value]), 
+                              class: "form-check-input" }, 
+                            level[:value], 
+                            nil %>
+                        <%= f.label "experience_level_in_#{level[:value]}", t(level[:key]), class: "form-check-label" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#salaryCollapse">
+                    <%= t "jobs.salary" %>
+                  </button>
+                </h2>
+                <div id="salaryCollapse" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                  <div class="accordion-body">
+                    <div class="salary-range-slider" data-controller="salary-slider">
+                      <div class="d-flex justify-content-between mb-2">
+                        <span data-salary-slider-target="minLabel">$0</span>
+                        <span data-salary-slider-target="maxLabel">$10000</span>
+                      </div>
+                      
+                      <div class="slider-container">
+                        <%= f.hidden_field :salary_gteq, 
+                            data: { salary_slider_target: "minInput" } %>
+                        <%= f.hidden_field :salary_lteq, 
+                            data: { salary_slider_target: "maxInput" } %>
+                            
+                        <div id="salary-slider"
+                             data-salary-slider-target="slider"
+                             data-min="<%= salary_range_config[:min] %>"
+                             data-max="<%= salary_range_config[:max] %>"
+                             data-step="<%= salary_range_config[:step] %>"
+                             data-default-min="<%= salary_range_config[:default_min] %>"
+                             data-default-max="<%= salary_range_config[:default_max] %>">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button <%= "show" if params.dig(:q, :created_at_gteq).present? || params.dig(:q, :created_at_lteq).present? %>"
+                          type="button" 
+                          data-bs-toggle="collapse" 
+                          data-bs-target="#dateCollapse">
+                    <%= t "jobs.date_posted" %>
+                  </button>
+                </h2>
+                <div id="dateCollapse" 
+                     class="accordion-collapse collapse <%= "show" if params.dig(:q, :created_at_gteq).present? || params.dig(:q, :created_at_lteq).present? %>"
+                     data-bs-parent="#filterAccordion">
+                  <div class="accordion-body">
+                    <div class="mb-3">
+                      <%= f.label :created_at_gteq, t("jobs.from_date"), class: "form-label" %>
+                      <%= f.date_field :created_at_gteq, class: "form-control" %>
+                    </div>
+                    <div class="mb-3">
+                      <%= f.label :created_at_lteq, t("jobs.to_date"), class: "form-label" %>
+                      <%= f.date_field :created_at_lteq, class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          <% end %>   
-          
-          <p class="h5 fw-bold mt-3"><%= t "jobs.location" %></p>
-          <% locations.each do |location| %>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <p class="mb-0 h5"><%= t location[:key] %></p>
-              <%= check_box_tag "location[]", location[:value], params[:location]&.include?(location[:value]) %>
+
+            <div class="d-flex justify-content-between mt-3">
+              <%= link_to t("jobs.reset"), jobs_path, class: "btn btn-outline-secondary" %>
+              <%= f.submit t("jobs.apply"), class: "btn btn-primary" %>
             </div>
           <% end %>
-          <%= f.submit t("jobs.apply"), class: "btn btn-primary mt-3 float-end" %>
-        <% end %>               
+        </div>
       </div>
     </div>
 
     <div class="col-md-9">
-      <% if params[:keyword].present? %>
-        <h5 class="fw-bold"><%= t "jobs.result_for_keyword" %> "<%= params[:keyword] %>"</h5>
+      <% if params[:q]&.[](:title_or_description_or_company_name_cont).present? %>
+        <h5 class="fw-bold">
+          <%= t "jobs.result_for_keyword" %> "<%= params[:q][:title_or_description_or_company_name_cont] %>"
+        </h5>
       <% end %>
       <h5><%= t "jobs.show_result", count: @pagy.count %></h5>
       
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <%= render @jobs %> 
+        <%= render @jobs %>
       </div>
 
       <div class="mt-4 float-end">
