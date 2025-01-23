@@ -12,7 +12,7 @@ en:
     hero:
       title: "Explore open career opportunities."
       subtitle: "We commit to exceptional company culture and outstanding benefits"
-      search_placeholder: "Search for job title, company, or location"
+      search_placeholder: "Search a job"
       select_city: "All cities"
       search_button: "Search"
     jobs:
@@ -60,6 +60,11 @@ en:
       hcm: "Ho Chi Minh"
       danang: "Da Nang"
       others: "Others"
+      intern: "Intern"
+      junior: "Junior"
+      mid_level: "Mid-level"
+      senior: "Senior"
+      lead: "Leader"
     result_for_keyword: "Search results for keyword"
     job_not_found: "Job not found"
     applications: "applications"

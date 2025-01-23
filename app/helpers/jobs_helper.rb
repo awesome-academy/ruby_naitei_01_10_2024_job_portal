@@ -16,4 +16,24 @@ module JobsHelper
       {key: "jobs.filter.others", value: "others"}
     ]
   end
+
+  def experience_levels
+    [
+      {key: "jobs.filter.intern", value: "Intern"},
+      {key: "jobs.filter.junior", value: "Junior"},
+      {key: "jobs.filter.mid_level", value: "Mid-Level"},
+      {key: "jobs.filter.senior", value: "Senior"},
+      {key: "jobs.filter.lead", value: "Lead"}
+    ]
+  end
+
+  def salary_range_config
+    {
+      min: 0,
+      max: Settings.jobs.max_salary,
+      step: Settings.jobs.salary_filter_step,
+      default_min: 0,
+      default_max: Settings.jobs.max_salary
+    }
+  end
 end

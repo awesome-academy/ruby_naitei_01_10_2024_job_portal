@@ -24,6 +24,12 @@ length: {maximum: Settings.company.name_max_length}
                    where("name LIKE ?", "%#{search}%") if search.present?
                  }
 
+  class << self
+    def ransackable_attributes _auth_object = nil
+      %w(name)
+    end
+  end
+
   private
 
   def logo_format

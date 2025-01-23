@@ -26,6 +26,10 @@ length: {maximum: Settings.jobs.description_max_length}
   validates :work_type, inclusion: {in: work_types.keys}
   validates :status, inclusion: {in: statuses.keys}
 
+  ransacker :salary do
+    Arel.sql("CAST(REGEXP_REPLACE(salary_range, \"[^0-9]\", \"\") AS UNSIGNED)")
+  end
+
   scope :filter_by_work_type, lambda {|work_types|
     where(work_type: work_types) if work_types.present?
   }
@@ -66,4 +70,15 @@ length: {maximum: Settings.jobs.description_max_length}
 
   scope :pending, ->{where(status: :pending)}
   scope :active, ->{where(status: :active)}
+
+  class << self
+    def ransackable_attributes _auth_object = nil
+      %w(title description location work_type experience_level salary
+created_at)
+    end
+
+    def ransackable_associations _auth_object = nil
+      %w(company)
+    end
+  end
 end
