@@ -32,7 +32,7 @@
             <%= render partial: "apply_modal", locals: {job: @job} %>
           <% else %>
             <% store_location %>
-            <%= link_to t("jobs.apply_now"), login_path, class: "w-100 btn btn-primary btn-lg" %>
+            <%= link_to t("jobs.apply_now"), new_user_session_path, class: "w-100 btn btn-primary btn-lg" %>
           <% end %>
         </div>
       </div>
@@ -88,7 +88,7 @@
           <%= render partial: "apply_modal", locals: {job: @job} %>
         <% else %>
           <% store_location %>
-          <%= link_to t("jobs.apply_now"), login_path, class: "w-100 btn btn-primary btn-lg" %>
+          <%= link_to t("jobs.apply_now"), new_user_session_path, class: "w-100 btn btn-primary btn-lg" %>
         <% end %>
       </div>
     </div>

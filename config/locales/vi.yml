@@ -81,6 +81,7 @@ vi:
     register: "Đăng ký"
     or: "HOẶC"
     continue_with: "Tiếp tục với %{provider}"
+    remember_me: "Ghi nhớ đăng nhập"
   flash:
     login:
       success: "Đăng nhập thành công"
@@ -323,3 +324,25 @@ vi:
       almost_x_years:
         one: "gần 1 năm"
         other: "gần %{count} năm"
+  register:
+    title: "Đăng ký tài khoản"
+    subtitle: "Tạo tài khoản để bắt đầu tìm kiếm công việc"
+    full_name: "Họ và tên"
+    email: "Email"
+    phone: "Số điện thoại" 
+    password: "Mật khẩu"
+    password_confirmation: "Xác nhận mật khẩu"
+    minimum_password: "Tối thiểu %{count} ký tự"
+    submit: "Đăng ký"
+    already_have_account: "Đã có tài khoản?"
+    login: "Đăng nhập"
+  passwords:
+    forgot_password: "Quên mật khẩu?"
+    subtitle: "Nhập email của bạn để nhận hướng dẫn đặt lại mật khẩu"
+    send_instructions: "Gửi hướng dẫn"
+    back_to_login: "Quay lại đăng nhập"
+    reset_password: "Đặt lại mật khẩu"
+    change_password: "Thay đổi mật khẩu"
+    new_password: "Mật khẩu mới"
+    confirm_new_password: "Xác nhận mật khẩu mới"
+    minimum_password: "Tối thiểu %{count} ký tự"

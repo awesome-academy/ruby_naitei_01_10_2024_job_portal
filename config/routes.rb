@@ -25,14 +25,23 @@ Rails.application.routes.draw do
 
     get "home/index"
     root "home#index"
-    get "/login", to: "sessions#new"
-    post "/login", to: "sessions#create"
-    delete "/logout", to: "sessions#destroy"
+    devise_for :users,
+               path: "",
+               path_names: {sign_in: "login", sign_out: "logout", sign_up: "signup"},
+               controllers: {
+                sessions: "users/sessions",
+                registrations: "users/registrations",
+                passwords: "users/passwords",
+               }
 
     namespace :enterprise do
-      get "/login", to: "sessions#new"
-      post "/login", to: "sessions#create"
-      get "/logout", to: "sessions#destroy"
+      devise_for :users,
+               path: "",
+               path_names: {sign_in: "login", sign_out: "logout"},
+               controllers: {
+                sessions: "users/sessions",
+                passwords: "user/passwords",
+               }
       root "dashboard#index"
       resources :jobs
       resources :applications do
@@ -44,9 +53,13 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      get "/login", to: "sessions#new"
-      post "/login", to: "sessions#create"
-      get "/logout", to: "sessions#destroy"
+      devise_for :users,
+               path: "",
+               path_names: {sign_in: "login", sign_out: "logout"},
+               controllers: {
+                sessions: "users/sessions",
+                passwords: "user/passwords",
+               }
       root "dashboard#index"
       resources :jobs, only: %i(update)
     end

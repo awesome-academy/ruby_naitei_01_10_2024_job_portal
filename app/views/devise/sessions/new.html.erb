@@ -6,7 +6,7 @@
       <h4 class="fw-bold"><%= t "login.title" %></h4>
       <p class="text-muted"><%= t "login.subtitle" %></p>
     </div>
-    <%= form_with url: login_path, local: true do |f| %>
+    <%= form_for resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
       <div class="mb-3">
         <%= f.label :email, t("login.email"), class: "form-label" %>
         <%= f.email_field :email, class: "form-control", placeholder: t("login.email") %>
@@ -14,6 +14,10 @@
       <div class="mb-3">
         <%= f.label :password, t("login.password"), class: "form-label" %>
         <%= f.password_field :password, class: "form-control", placeholder: t("login.password") %>
+      </div>
+      <div class="mb-3 form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, t("login.remember_me"), class: "form-check-label" %>
       </div>
       <div class="d-grid">
         <%= f.submit t("login.login"), class: "btn btn-primary" %>
@@ -27,8 +31,8 @@
     </div>
     <div class="text-center mt-3">
       <p class="small">
-        <a href="#"><%= t "login.can't_sign_in" %></a> | 
-        <a href="#"><%= t "login.register" %></a>
+        <%= link_to t("passwords.forgot_password"), new_user_password_path %> | 
+        <%= link_to t("login.register"), new_user_registration_path %>
       </p>
     </div>
   </div>
