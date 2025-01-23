@@ -40,7 +40,7 @@ end
               password_confirmation: password,
               dob: dob,
               phone: phone,
-              is_active: true,
+              confirmed_at: Time.current,
               role: 0)
 end
 
@@ -119,8 +119,8 @@ end
               password_confirmation: password,
               dob: dob,
               phone: phone,
-              is_active: true,
               role: 1,
+              confirmed_at: Time.current,
               company_id: 1)
 end
 
@@ -130,5 +130,5 @@ User.create!(full_name: "Admin",
             password_confirmation: "password",
             dob: Faker::Date.birthday(min_age: 18, max_age: 65),
             phone: Faker::PhoneNumber.cell_phone,
-            is_active: true,
+            confirmed_at: Time.current,
             role: 2)

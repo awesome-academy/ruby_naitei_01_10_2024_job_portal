@@ -1,0 +1,20 @@
+<div class="header">
+  <h2><%= t("devise.mailer.confirmation_instructions.greeting", recipient: @email) %></h2>
+</div>
+
+<div class="content">
+  <p><%= t("devise.mailer.confirmation_instructions.instruction") %></p>
+
+  <div style="text-align: center;">
+    <%= link_to t("devise.mailer.confirmation_instructions.action"),
+                confirmation_url(@resource, confirmation_token: @token),
+                class: "button" %>
+  </div>
+
+  <p><%= t("devise.mailer.confirmation_instructions.instruction_2") %></p>
+  <p><%= t("devise.mailer.confirmation_instructions.instruction_3") %></p>
+</div>
+
+<div class="footer">
+  <p>© <%= Time.current.year %> Decapa. All rights reserved.</p>
+</div>
