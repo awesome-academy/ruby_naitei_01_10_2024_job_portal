@@ -10,10 +10,10 @@
   </div>
 
   <nav class="header-nav">
-    <% unless logged_in? %>
-      <%= link_to t("header.for_employers"), enterprise_login_path %>
+    <% unless user_signed_in? %>
+      <%= link_to t("header.for_employers"), new_enterprise_user_session_path %>
     <% end %>
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <%= render "shared/notification" %>
       <div class="dropdown header-username ms-3" id="header-dropdown">
         <div class="dropdown-toggle" data-toggle="dropdown">
@@ -24,11 +24,11 @@
           <li class="dropdown-link"><%= link_to t("header.profile"), user_path(id: current_user.id), class: "d-block w-100" %></li>
           <li class="dropdown-link"><%= link_to t("header.settings"), "#", class: "d-block w-100" %></li>
           <li class="divider"></li>
-          <li class="dropdown-link"><%= link_to t("header.logout"), logout_path, data: { turbo_method: :delete }, class: "d-block w-100" %></li>
+          <li class="dropdown-link"><%= link_to t("header.logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "d-block w-100" %></li>
         </ul>
       </div>
     <% else %>
-      <%= link_to t("header.login"), login_path, class: "btn-login" %>
+      <%= link_to t("header.login"), new_user_session_path, class: "btn-login" %>
     <% end %>
     <div class="switch-language">
       <%= link_to "EN", switch_language_path(locale: "en") %>

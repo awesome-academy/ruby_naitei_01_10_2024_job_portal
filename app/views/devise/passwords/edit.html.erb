@@ -1,0 +1,38 @@
+<% provide :title, t("passwords.reset_password") %>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 25rem;">
+    <div class="text-center mb-4">
+      <h4 class="fw-bold"><%= t "passwords.reset_password" %></h4>
+      <p class="text-muted"><%= t "passwords.change_password" %></p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="mb-3">
+        <%= f.label :password, t("passwords.new_password"), class: "form-label" %>
+        <%= f.password_field :password, class: "form-control" %>
+        <% if @minimum_password_length %>
+          <small class="form-text text-muted">
+            <%= t("passwords.minimum_password", count: @minimum_password_length) %>
+          </small>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, t("passwords.confirm_new_password"), class: "form-label" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <div class="d-grid mb-3">
+        <%= f.submit t("passwords.change_password"), class: "btn btn-primary" %>
+      </div>
+
+      <div class="text-center">
+        <%= link_to t("passwords.back_to_login"), new_user_session_path %>
+      </div>
+    <% end %>
+  </div>
+</div>

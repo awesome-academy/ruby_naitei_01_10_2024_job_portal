@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
   include Pagy::Backend
+  include DeviseHelper
 
   def switch_language
     if params[:locale].present? &&
@@ -19,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
 
     store_location
     flash[:danger] = t "views.flash.please_log_in"
