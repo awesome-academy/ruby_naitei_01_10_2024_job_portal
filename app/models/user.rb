@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :confirmable, :lockable
+
   has_one_attached :avatar
-  has_secure_password
 
   belongs_to :company, optional: true
 

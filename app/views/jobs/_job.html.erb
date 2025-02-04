@@ -21,7 +21,7 @@
           <%= render partial: "apply_modal", locals: {job: job} %>
         <% else %>
           <% store_location %>
-          <%= link_to t("jobs.apply_now"), login_path, class: "btn btn-outline-primary" %>
+          <%= link_to t("jobs.apply_now"), new_user_session_path, class: "btn btn-outline-primary" %>
         <% end %> 
       </div>
     </div>
