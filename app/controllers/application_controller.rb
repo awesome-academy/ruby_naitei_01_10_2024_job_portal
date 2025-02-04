@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include Pagy::Backend
   include DeviseHelper
+  include CanCan::ControllerAdditions
 
   def switch_language
     if params[:locale].present? &&
@@ -25,5 +26,17 @@ class ApplicationController < ActionController::Base
     store_location
     flash[:danger] = t "views.flash.please_log_in"
     redirect_to login_url
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html do
+        flash[:danger] = exception.message
+        redirect_to root_path
+      end
+      format.json do
+        render json: {error: exception.message}, status: :forbidden
+      end
+    end
   end
 end

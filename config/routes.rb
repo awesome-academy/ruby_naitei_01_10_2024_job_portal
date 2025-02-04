@@ -39,8 +39,8 @@ Rails.application.routes.draw do
                path: "",
                path_names: {sign_in: "login", sign_out: "logout"},
                controllers: {
-                sessions: "users/sessions",
-                passwords: "user/passwords",
+                sessions: "enterprise/sessions",
+                passwords: "enterprise/passwords",
                }
       root "dashboard#index"
       resources :jobs
@@ -57,8 +57,8 @@ Rails.application.routes.draw do
                path: "",
                path_names: {sign_in: "login", sign_out: "logout"},
                controllers: {
-                sessions: "users/sessions",
-                passwords: "user/passwords",
+                sessions: "admin/sessions",
+                passwords: "admin/passwords",
                }
       root "dashboard#index"
       resources :jobs, only: %i(update)

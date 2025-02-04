@@ -1,30 +1,21 @@
-class Enterprise::SessionsController < ApplicationController
+class Enterprise::SessionsController < Devise::SessionsController
   layout "auth"
-  def new; end
 
   def create
-    user = User.find_by(email: params[:email], role: Settings.roles.enterprise)
-    if user&.authenticate(params[:password])
-      handle_successful_login(user)
+    user = User.find_by(email: params[:email], role: :business)
+    if user&.valid_password?(params[:password])
+      sign_in(user)
+      flash[:success] = t("devise.sessions.signed_in")
+      redirect_to enterprise_root_path
     else
-      handle_failed_login
+      flash.now[:danger] = t("devise.failure.invalid")
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    log_out
-    redirect_to root_path
-  end
-
-  def handle_successful_login user
-    reset_session
-    log_in user
-    flash[:success] = t "flash.login.success"
-    redirect_to enterprise_root_path
-  end
-
-  def handle_failed_login
-    flash.now[:danger] = t "flash.login.error"
-    render :new, status: :unprocessable_entity
+    sign_out(current_user)
+    flash[:success] = t("devise.sessions.signed_out")
+    redirect_to new_enterprise_user_session_path
   end
 end

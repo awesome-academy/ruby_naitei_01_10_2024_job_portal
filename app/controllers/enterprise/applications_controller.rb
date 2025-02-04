@@ -1,11 +1,11 @@
 class Enterprise::ApplicationsController < ApplicationController
   layout "enterprise"
   include NotificationsHelper
-  before_action :load_application, only: [:show, :update_status]
+  load_and_authorize_resource
 
   def index
-    applications = current_user.company.applications.order(created_at: :desc)
-    @pagy, @applications = pagy(applications, limit: Settings.apply.page_size)
+    @applications = @applications.order(created_at: :desc)
+    @pagy, @applications = pagy(@applications, limit: Settings.apply.page_size)
   end
 
   def show
@@ -22,16 +22,6 @@ class Enterprise::ApplicationsController < ApplicationController
   end
 
   private
-
-  def load_application
-    @application = current_user.company.applications
-                               .includes(:interview_processes)
-                               .find_by(id: params[:id])
-    return if @application.present?
-
-    flash[:danger] = t "enterprise.applications.not_found"
-    redirect_to enterprise_applications_path
-  end
 
   def handle_update_success application, status
     create_notification_for_applicant(

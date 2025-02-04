@@ -1,6 +1,6 @@
 class Enterprise::JobsController < ApplicationController
   layout "enterprise"
-  before_action :load_job, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource(&:with_deleted)
 
   def index
     @jobs = current_user.company.jobs.with_deleted.order(created_at: :desc)
@@ -44,10 +44,6 @@ class Enterprise::JobsController < ApplicationController
   end
 
   private
-
-  def load_job
-    @job = current_user.company.jobs.with_deleted.find(params[:id])
-  end
 
   def job_params
     params.require(:job).permit(Job::PERMITTED_PARAMS)

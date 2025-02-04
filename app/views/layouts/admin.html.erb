@@ -16,15 +16,23 @@
           <h4><%= t("admin.sidebar.admin_panel") %></h4>
         </div>
         <ul class="nav flex-column pt-3 pb-4 px-3 flex-grow-1">
-          <li class="nav-item">
-            <%= link_to "Dashboard", admin_root_path, class: "nav-link text-dark bg-light text" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t("admin.sidebar.job"), "#", class: "nav-link text-white" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t("admin.sidebar.user"), "#", class: "nav-link text-white" %>
-          </li>
+          <% if can? :read, :dashboard %>
+            <li class="nav-item">
+              <%= link_to "Dashboard", admin_root_path, class: "nav-link text-dark bg-light text" %>
+            </li>
+          <% end %>
+          
+          <% if can? :manage, Job %>
+            <li class="nav-item">
+              <%= link_to t("admin.sidebar.job"), "#", class: "nav-link text-white" %>
+            </li>
+          <% end %>
+          
+          <% if can? :manage, User %>
+            <li class="nav-item">
+              <%= link_to t("admin.sidebar.user"), "#", class: "nav-link text-white" %>
+            </li>
+          <% end %>
           <li class="nav-item">
             <div class="switch-language nav-item mb-2 px-3 py-1">
               <%= link_to "EN", switch_language_path(locale: "en") %>
@@ -33,7 +41,7 @@
             </div>
           </li>
           <li class="nav-item mt-auto">
-            <%= link_to admin_logout_path, method: :delete, class: "nav-link text-white" do %>
+            <%= link_to destroy_admin_user_session_path, data: { turbo_method: :delete }, class: "nav-link text-white" do %>
               <i class="fa-solid fa-right-from-bracket"></i>
               <%= t("admin.sidebar.logout") %>
             <% end %>
