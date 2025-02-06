@@ -66,4 +66,10 @@ Rails.application.routes.draw do
 
     get "/translations/:locale", to: "translations#show"
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :jobs, except: [:new, :edit]
+    end
+  end
 end
