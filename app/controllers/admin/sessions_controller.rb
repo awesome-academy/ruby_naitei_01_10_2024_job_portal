@@ -1,30 +1,22 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Devise::SessionsController
   layout "auth"
   def new; end
 
   def create
-    user = User.find_by(email: params[:email], role: Settings.roles.admin)
-    if user&.authenticate(params[:password])
-      handle_successful_login(user)
+    user = User.find_by(email: params[:email], role: :admin)
+    if user&.valid_password?(params[:password])
+      sign_in(user)
+      flash[:success] = t("devise.sessions.signed_in")
+      redirect_to admin_root_path
     else
-      handle_failed_login
+      flash.now[:danger] = t("devise.failure.invalid")
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    log_out
-    redirect_to admin_login_path
-  end
-
-  def handle_successful_login user
-    reset_session
-    log_in user
-    flash[:success] = t "flash.login.success"
-    redirect_to admin_root_path
-  end
-
-  def handle_failed_login
-    flash.now[:danger] = t "flash.login.error"
-    render :new, status: :unprocessable_entity
+    sign_out(current_user)
+    flash[:success] = t("devise.sessions.signed_out")
+    redirect_to new_admin_user_session_path
   end
 end

@@ -27,15 +27,26 @@
             <p class="sidebar-text"><%= current_user.company.name %></p>
           </div>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-              <%= link_to t("enterprise.scout.title"), enterprise_root_path, class: "nav-link  px-5 sidebar-text #{active_link_to(enterprise_root_path)}" %>
-            </li>
-            <li class="nav-item mb-2">
-              <%= link_to t("enterprise.recruitment.recruitments"), enterprise_jobs_path, class: "nav-link px-5 sidebar-text #{active_link_to(enterprise_jobs_path)}" %>
-            </li>
-            <li class="nav-item mb-2">
-              <%= link_to t("enterprise.applications.title"), enterprise_applications_path, class: "nav-link px-5 sidebar-text #{active_link_to(enterprise_applications_path)}" %>
-            </li>
+            <% if can? :read, User %>
+              <li class="nav-item mb-2">
+                <%= link_to t("enterprise.scout.title"), enterprise_root_path, 
+                    class: "nav-link px-5 sidebar-text #{active_link_to(enterprise_root_path)}" %>
+              </li>
+            <% end %>
+            
+            <% if can? :manage, Job %>
+              <li class="nav-item mb-2">
+                <%= link_to t("enterprise.recruitment.recruitments"), enterprise_jobs_path,
+                    class: "nav-link px-5 sidebar-text #{active_link_to(enterprise_jobs_path)}" %>
+              </li>
+            <% end %>
+            
+            <% if can? :manage, Application %>
+              <li class="nav-item mb-2">
+                <%= link_to t("enterprise.applications.title"), enterprise_applications_path,
+                    class: "nav-link px-5 sidebar-text #{active_link_to(enterprise_applications_path)}" %>
+              </li>
+            <% end %>
             <li class="nav-item mb-2">
               <%= link_to t("enterprise.profile.title"), "#", class: "nav-link px-5 sidebar-text" %>
             </li>
@@ -47,7 +58,7 @@
           </ul>
         </div>
         <div class="mt-auto p-5">
-          <%= link_to enterprise_logout_path, method: :delete, class: "d-block text-decoration-none text-center sidebar-text" do %>
+          <%= link_to destroy_enterprise_user_session_path, data: { turbo_method: :delete }, class: "d-block text-decoration-none text-center sidebar-text" do %>
             <i class="fa-solid fa-right-from-bracket"></i>
             <span><%= t "header.logout" %></span>
           <% end %>
