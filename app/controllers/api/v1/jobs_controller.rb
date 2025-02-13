@@ -1,11 +1,12 @@
-class Api::V1::JobsController < ApplicationController
-  protect_from_forgery with: :null_session
-
+class Api::V1::JobsController < Api::V1::ApplicationController
   before_action :set_job, only: [:show, :update, :destroy]
 
   def index
-    jobs = Job.all
-    render json: jobs, each_serializer: JobSerializer
+    per_page = determine_per_page
+    q = Job.active.ransack(params[:q])
+    @pagy, jobs = pagy(q.result(distinct: true), limit: per_page)
+    set_header @pagy
+    render json: jobs, each_serializer: JobSerializer, status: :ok
   end
 
   def show
@@ -33,7 +34,7 @@ class Api::V1::JobsController < ApplicationController
 
   def destroy
     @job.destroy
-    head :no_content
+    render json: {message: I18n.t("jobs.deleted_success")}, status: :ok
   end
 
   private
@@ -58,5 +59,19 @@ class Api::V1::JobsController < ApplicationController
       :company_id,
       required_skills: [:key, :value]
     )
+  end
+
+  def determine_per_page
+    if params[:per_page].present?
+      params[:per_page].to_i
+    else
+      Settings.jobs.page_size
+    end
+  end
+
+  def set_header pagy
+    response.headers["X-Total-Count"]   = pagy.count.to_s
+    response.headers["X-Total-Pages"]   = pagy.pages.to_s
+    response.headers["X-Current-Page"]  = pagy.page.to_s
   end
 end

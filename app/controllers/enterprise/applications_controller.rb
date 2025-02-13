@@ -4,6 +4,7 @@ class Enterprise::ApplicationsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    authorize! :read, current_user.company_id
     @applications = @applications.order(created_at: :desc)
     @pagy, @applications = pagy(@applications, limit: Settings.apply.page_size)
   end
