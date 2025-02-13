@@ -40,3 +40,4 @@ interview_process:
   feedback_max_length: 1000
   rating_min_value: 1
   rating_max_value: 5
+jwt_default_exp_hours: 12

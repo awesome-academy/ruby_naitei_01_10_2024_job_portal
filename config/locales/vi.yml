@@ -7,6 +7,11 @@ vi:
       already_followed: "Bạn đã theo dõi người dùng này rồi"
       invalid_url: "URL không hợp lệ"
       locales_not_supported: "Ngôn ngữ này không được hỗ trợ"
+      record_not_found: "Không tìm thấy tài nguyên"
+      internal_server_error: "Đã xảy ra lỗi trên máy chủ, vui lòng thử lại sau"
+      user_not_found: "Không tìm thấy người dùng"
+      invalid_token: "Token không hợp lệ"
+      missing_token: "Token không được cung cấp"
   home:
     title: "DeCaPa | Tạo cơ hội nghề nghiệp IT, hình thành tương lai của bạn."
     hero:
@@ -71,6 +76,7 @@ vi:
     date_posted: "Ngày đăng"
     from_date: "Từ ngày"
     to_date: "Đến ngày"
+    deleted_success: "Đã xóa thành công"
   login:
     login: "Đăng nhập"
     title: "Đăng nhập vào tài khoản của bạn"
@@ -118,6 +124,7 @@ vi:
       create_success: "Tạo vòng phỏng vấn thành công"
       create_error: "Tạo vòng phỏng vấn thất bại"
     error: "Đã xảy ra lỗi"
+    please_log_in: "Hãy đăng nhập trước"
   ago: "trước"
   company:
     view_details: "Xem chi tiết"
@@ -346,3 +353,8 @@ vi:
     new_password: "Mật khẩu mới"
     confirm_new_password: "Xác nhận mật khẩu mới"
     minimum_password: "Tối thiểu %{count} ký tự"
+  devise:
+    sessions:
+      signed_in: "Đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+      invalid_login: "Đăng nhập thất bại, thông tin không hợp lệ"

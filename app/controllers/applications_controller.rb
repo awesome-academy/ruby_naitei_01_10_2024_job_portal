@@ -1,4 +1,5 @@
 class ApplicationsController < ApplicationController
+  load_and_authorize_resource
   def create
     existing_application = Application.find_by(
       job_id: params[:job_id], user_id: current_user.id

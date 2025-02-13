@@ -1,6 +1,7 @@
 class Admin::JobsController < ApplicationController
+  load_and_authorize_resource
+
   def update
-    @job = Job.find(params[:id])
     if @job.update(status: params[:status])
       flash[:success] = t "flash.jobs.update_success"
       redirect_to admin_root_path

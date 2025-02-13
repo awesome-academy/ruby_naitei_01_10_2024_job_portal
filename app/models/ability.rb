@@ -35,10 +35,11 @@ class Ability
     can :read, Job
     can :create, Application
     can :read, Application, user_id: user.id
-    can :manage, UserProfile, user_id: user.id
-    can :manage, UserSocialLink, user_id: user.id
+    can :manage, User, id: user.id
+    can :manage, UserProfile, id: user.id
+    can :manage, UserSocialLink, id: user.id
     can :read, Company
-    can :read, Notification
+    can :read, Notification, id: user.id
   end
 
   def guest_abilities
