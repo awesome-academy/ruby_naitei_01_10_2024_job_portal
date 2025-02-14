@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     return if user_signed_in?
 
     store_location
-    flash[:danger] = t "views.flash.please_log_in"
-    redirect_to login_url
+    flash[:danger] = t "flash.please_log_in"
+    redirect_to new_user_session_path
   end
 
   rescue_from CanCan::AccessDenied do |exception|

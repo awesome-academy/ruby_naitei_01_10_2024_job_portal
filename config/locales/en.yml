@@ -7,6 +7,11 @@ en:
       already_followed: "You are already following this user"
       invalid_url: "Invalid URL"
       locales_not_supported: "This locale is not supported"
+      record_not_found: "Resource not found"
+      internal_server_error: "Internal server error, please try again later"
+      user_not_found: "User not found"
+      invalid_token: "Invalid token"
+      missing_token: "Token not provided"
   home:
     title: "DeCaPa | Empowering IT Careers, Shaping Your Future."
     hero:
@@ -78,6 +83,7 @@ en:
     description: "Job Description"
     requirements: "Job Requirements"
     related_jobs: "Related Jobs"
+    deleted_success: "Delete job successfully"
   flash:
     login:
       success: "Logged in successfully"
@@ -114,6 +120,7 @@ en:
       create_success: "Create interview successfully"
       create_error: "Create interview failed"
     error: "Something went wrong"
+    please_log_in: "Please log in"
   ago: "ago"
   company:
     view_details: "View details"
@@ -307,3 +314,8 @@ en:
     new_password: "New password"
     confirm_new_password: "Confirm new password"
     minimum_password: "Minimum %{count} characters"
+  devise:
+    sessions:
+      signed_in: "Logged in successfully."
+      signed_out: "Logged out successfully."
+      invalid_login: "Invalid login credentials"

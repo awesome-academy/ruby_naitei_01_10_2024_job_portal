@@ -5,6 +5,10 @@ FactoryBot.define do
     full_name { "Test User" }
     confirmed_at { Time.current }
 
+    trait :user do
+      role { :user }
+    end
+
     trait :enterprise do
       role { :business }
       association :company

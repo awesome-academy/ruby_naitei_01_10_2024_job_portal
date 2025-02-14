@@ -3,6 +3,7 @@ class Enterprise::JobsController < ApplicationController
   load_and_authorize_resource(&:with_deleted)
 
   def index
+    authorize! :read, current_user.company_id
     @jobs = current_user.company.jobs.with_deleted.order(created_at: :desc)
   end
 
@@ -22,7 +23,9 @@ class Enterprise::JobsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    authorize! :read, current_user.company_id
+  end
 
   def edit; end
 

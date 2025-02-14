@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :load_user_data, :logged_in_user
+  load_and_authorize_resource
+  before_action :logged_in_user, :load_user_data
 
   def show
     @user_project = UserProject.new
-    @applications = current_user.applications.recent
+    @applications = @user.applications.recent
   end
 
   def update
@@ -23,9 +24,8 @@ class UsersController < ApplicationController
   end
 
   def load_user_data
-    @user = current_user
-    @profile = current_user.user_profile
+    @profile = @user.user_profile
     @projects = @profile.user_projects
-    @social_links = current_user.user_social_links
+    @social_links = @user.user_social_links
   end
 end
